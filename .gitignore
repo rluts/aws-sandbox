@@ -1,0 +1,8 @@
+# jetbrains
+.idea/
+
+# terraform
+*.tfvars
+.terraform*
+*.tfstate*
+terraform.txt

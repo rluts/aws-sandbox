@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "AWS for dev training/Week-0"
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+  ImageId:
+    Description: EC2 instance configuration
+    Type: String
+    Default: ami-07df274a488ca9195
+
+Resources:
+  EC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: !Ref ImageId
+      InstanceType: !Ref InstanceType
+
+Outputs:
+  EC2PublicId:
+    Description: EC2Instance public IP
+    Value:
+      Fn::GetAtt:
+        - EC2Instance
+        - PublicIp

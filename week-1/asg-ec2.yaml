@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "AWS for dev training/Week-1"
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+  ImageId:
+    Description: EC2 instance configuration
+    Type: String
+    Default: ami-0c2d06d50ce30b442
+  KeyName:
+    Description: SSH key name
+    Type: String
+    Default: aws-cource
+
+
+Resources:
+  EC2SecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: "Allows SSH, HTTP, HTTPS Connection"
+      GroupName: security-group-ec2-java
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+  LaunchTemplate:
+    Type: "AWS::EC2::LaunchTemplate"
+    Properties:
+      LaunchTemplateName: EC2-JAVA8
+      LaunchTemplateData:
+        ImageId: !Ref ImageId
+        InstanceType: !Ref InstanceType
+        KeyName: !Ref KeyName
+        UserData: "IyEvYmluL2Jhc2gKc3VkbyB5dW0gdXBkYXRlIC15CnN1ZG8geXVtIGluc3RhbGwgLXkgamF2YS0xLjguMC1vcGVuamRr"
+        SecurityGroups:
+          - !Ref EC2SecurityGroup
+  AutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      MinSize: 2
+      MaxSize: 3
+      AvailabilityZones:
+        Fn::GetAZs: !Ref "AWS::Region"
+      LaunchTemplate:
+        LaunchTemplateId: !Ref LaunchTemplate
+        Version:
+          Fn::GetAtt:
+            - LaunchTemplate
+            - LatestVersionNumber
+
