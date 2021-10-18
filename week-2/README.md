@@ -3,7 +3,7 @@
 access_key = "AWS access key"
 secret_key = "AWS secret key"
 key_name = "name of your ssh key"
-bucket_name = "rlutsbucket"
+bucket_name = "rlutstestbucket"
 ```
 * Run the script
   * `./init-s3.sh`
