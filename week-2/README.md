@@ -1,8 +1,10 @@
 * Set variables in `terraform.tfvars` file 
-  access_key = "AWS access key"
-  secret_key = "AWS secret key"
-  key_name = "name of your ssh key"
-  bucket_name = "rlutsbucket"
+```
+access_key = "AWS access key"
+secret_key = "AWS secret key"
+key_name = "name of your ssh key"
+bucket_name = "rlutsbucket"
+```
 * Run the script
   * `./init-s3.sh`
 * Deploy infrastructure
