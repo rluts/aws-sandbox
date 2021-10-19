@@ -8,8 +8,8 @@
                 "s3:List*"
             ],
             "Resource": [
-                "arn:aws:s3:::rlutstestbucket/*",
-                "arn:aws:s3:::rlutstestbucket"
+                "arn:aws:s3:::${bucket_name}/*",
+                "arn:aws:s3:::${bucket_name}"
             ]
         }
     ]
