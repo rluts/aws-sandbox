@@ -1,6 +1,6 @@
 resource "aws_iam_role" "ec2_role" {
   name        = "ec2_role"
-  assume_role_policy = file("role_ec2.json")
+  assume_role_policy = file("templates/role_ec2.json")
 }
 
 resource "aws_iam_role_policy" "ec2_role_policy" {
