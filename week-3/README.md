@@ -10,6 +10,7 @@ rds_credentials = { username = "<DB_USER>", password = "DB_PASSWORD" }
 * Deploy infrastructure
   * `terraform init`
   * `terraform apply`
+* Connect to the server via SSH
 * Run SQL script
   * `psql -h <ENDPOINT_URL_FROM_OUTPUT> -U <DB_USER_FROM_VARIABLES> -a -f rds-script.sql`
   * enter postgresql password (from terraform rds_credentials variable)
