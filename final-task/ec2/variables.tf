@@ -53,3 +53,11 @@ variable "key_name" {
 variable "rds_host" {
   type = string
 }
+
+variable "rds_credentials" {
+  type = object({ username = string, password = string })
+}
+
+variable "rds_name" {
+  type = string
+}

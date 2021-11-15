@@ -10,8 +10,8 @@ export ${name}=${value}
 echo "${name}=${value}" >> /etc/environment
 %{ endfor ~}
 
-%{ for app in jsondecode(installations) ~}
-amazon-linux-extras install ${app}
+%{ for command in jsondecode(extra_commands) ~}
+${command}
 %{ endfor ~}
 
 java -jar /root/${file_name}

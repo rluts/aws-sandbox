@@ -22,8 +22,10 @@ module "ec2" {
   persist_app_file_name = var.persist_app_file_name
   vpc                   = module.vpc.vpc
   key_name              = var.key_name
-  rds_host              = module.rds.rds_host
   nat_ami_id            = var.nat_ami_id
+  rds_host              = module.rds.rds_host
+  rds_credentials       = var.rds_credentials
+  rds_name              = var.rds_name
 }
 
 module "rds" {
